@@ -35,3 +35,21 @@ func (r *OrderRepository) GetTotal() (int, error) {
 	}
 	return total, nil
 }
+
+func (c *OrderRepository) List() ([]entity.Order, error) {
+	rows, err := c.Db.Query("SELECT id, price, finalPrice FROM orders")
+	if err != nil {
+		return nil, err
+	}
+	defer rows.Close()
+	orders := []entity.Order{}
+	for rows.Next() {
+		var id string
+		var price, finalPrice float64
+		if err := rows.Scan(&id, &price, &finalPrice); err != nil {
+			return nil, err
+		}
+		orders = append(orders, entity.Order{ID: id, Price: price, FinalPrice: finalPrice})
+	}
+	return orders, nil
+}
