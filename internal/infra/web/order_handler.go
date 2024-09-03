@@ -27,6 +27,10 @@ func NewWebOrderHandler(
 	}
 }
 
+type OrderHandler struct {
+	ListOrdersUseCase usecase.ListOrderUseCase
+}
+
 func (h *WebOrderHandler) Create(w http.ResponseWriter, r *http.Request) {
 	var dto usecase.OrderInputDTO
 	err := json.NewDecoder(r.Body).Decode(&dto)
@@ -46,4 +50,15 @@ func (h *WebOrderHandler) Create(w http.ResponseWriter, r *http.Request) {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return
 	}
+}
+
+func (h *OrderHandler) ListOrders(w http.ResponseWriter, r *http.Request) {
+	orders, err := h.ListOrdersUseCase.Execute()
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+		return
+	}
+
+	w.Header().Set("Content-Type", "application/json")
+	json.NewEncoder(w).Encode(orders)
 }
