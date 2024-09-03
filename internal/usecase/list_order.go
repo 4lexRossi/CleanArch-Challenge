@@ -14,7 +14,6 @@ type ListOrderOutputDTO struct {
 
 type ListOrderUseCase struct {
 	OrderRepository entity.OrderRepositoryInterface
-	OrderCreated    events.EventInterface
 	EventDispatcher events.EventDispatcherInterface
 }
 
@@ -25,7 +24,6 @@ func NewListOrderUseCase(
 ) *ListOrderUseCase {
 	return &ListOrderUseCase{
 		OrderRepository: OrderRepository,
-		OrderCreated:    OrderCreated,
 		EventDispatcher: EventDispatcher,
 	}
 }
