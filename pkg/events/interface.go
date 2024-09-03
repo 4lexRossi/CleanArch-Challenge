@@ -10,6 +10,7 @@ type EventInterface interface {
 	GetDateTime() time.Time
 	GetPayload() interface{}
 	SetPayload(payload interface{})
+	GetResponse() []interface{}
 }
 
 type EventHandlerInterface interface {
