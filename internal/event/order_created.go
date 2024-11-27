@@ -21,6 +21,14 @@ func (e *OrderCreated) GetPayload() interface{} {
 	return e.Payload
 }
 
+func (e *OrderCreated) GetResponse() []interface{} {
+	var response []interface{}
+
+	response = append(response, e.Payload)
+
+	return response
+}
+
 func (e *OrderCreated) SetPayload(payload interface{}) {
 	e.Payload = payload
 }

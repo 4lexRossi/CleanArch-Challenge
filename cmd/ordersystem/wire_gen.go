@@ -8,6 +8,7 @@ package main
 
 import (
 	"database/sql"
+
 	"github.com/4lexRossi/CleanArch-Challenge/internal/entity"
 	"github.com/4lexRossi/CleanArch-Challenge/internal/event"
 	"github.com/4lexRossi/CleanArch-Challenge/internal/infra/database"
@@ -15,9 +16,7 @@ import (
 	"github.com/4lexRossi/CleanArch-Challenge/internal/usecase"
 	"github.com/4lexRossi/CleanArch-Challenge/pkg/events"
 	"github.com/google/wire"
-)
 
-import (
 	_ "github.com/go-sql-driver/mysql"
 )
 
